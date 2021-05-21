@@ -4,9 +4,11 @@ import org.junit.Test;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Random;
 
 public class ChernoffFaceTest {
     @Test
@@ -119,6 +121,82 @@ public class ChernoffFaceTest {
             ChernoffFace.create(graphics, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, d);
             ImageIO.write(image, "PNG", new File(String.format("./mouth-open-%3.2f.png", d)));
         }
+    }
+
+    @Test
+    public void testRandom() throws Exception {
+        Random random = new Random(1L);
+        for (int i = 0; i <= 16; i++) {
+            BufferedImage image = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D graphics = image.createGraphics();
+
+            double p1 = random.nextDouble();
+            double p2 = random.nextDouble();
+            double p3 = random.nextDouble();
+            double p4 = random.nextDouble();
+            double p5 = random.nextDouble();
+            double p6 = random.nextDouble();
+            double p7 = random.nextDouble();
+            double p8 = random.nextDouble();
+            double p9 = random.nextDouble();
+            double p10 = random.nextDouble();
+
+            ChernoffFace.create(graphics, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+            ImageIO.write(image, "PNG", new File(String.format("./ramdom-%03d.png", i)));
+        }
+    }
+
+    @Test
+    public void testExtremes() throws Exception {
+
+        BufferedImage image = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D graphics = image.createGraphics();
+
+        ChernoffFace.create(graphics, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        ImageIO.write(image, "PNG", new File("./extreme-min.png"));
+
+        image = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
+        graphics = image.createGraphics();
+
+        ChernoffFace.create(graphics, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+        ImageIO.write(image, "PNG", new File("./extreme-max.png"));
+
+    }
+
+    @Test
+    public void testEyeSizes() throws Exception {
+
+        BufferedImage image = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D graphics = image.createGraphics();
+
+        ChernoffFace.create(graphics, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.0, 0.5, 0.5);
+        ImageIO.write(image, "PNG", new File("./eyesize-01.png"));
+
+        image = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
+        graphics = image.createGraphics();
+
+        ChernoffFace.create(graphics, 0.5, 0.5, 0.0, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5);
+        ImageIO.write(image, "PNG", new File("./eyesize-02.png"));
+
+        image = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB);
+        graphics = image.createGraphics();
+
+        ChernoffFace.create(graphics, 0.5, 0.5, 1.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5);
+        ImageIO.write(image, "PNG", new File("./eyesize-03.png"));
+
+    }
+
+
+    @Test
+    public void testTransform() throws Exception {
+        double[] d = {0.0, 0.25, 0.5, 0.75, 1.0};
+        BufferedImage image = new BufferedImage(400 * d.length, 400, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D graphics = image.createGraphics();
+        for (int i=0; i<d.length; i++) {
+            AffineTransform transform = AffineTransform.getTranslateInstance(i*400.0, 0.0);
+            ChernoffFace.create(graphics, transform, d[i], d[i], d[i], d[i], d[i], d[i], d[i], d[i], d[i], d[i] );
+        }
+        ImageIO.write(image, "PNG", new File("./transform.png"));
     }
 
     @Test
