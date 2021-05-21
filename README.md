@@ -7,7 +7,8 @@ attributes that are used to show variation in values.
 
 This show the range from min to max on all of the values:
 ![Min/Max values](images/min-max.png)
-
+                  
+## Parameters
 ### Head Shape 
 The more eccentric in the x axis it is the larger the value. Likewise larger values, 
  the more eccentric in the y axis for smaller values.
@@ -44,4 +45,7 @@ The distance between eyes.
 ### Mouth Openess
 ![Mouth openess](images/mouth-openess.png)
 
+## Examples
+Examples on how to use the library and how to create PNG, SVG or EPS files is at
+[Chernoff Face Examples](https://github.com/jdrem/chernoff-face-examples)
 
