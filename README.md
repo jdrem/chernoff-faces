@@ -1,6 +1,6 @@
 ![Random Chernoff Faces](images/random.png)
 
-#Chernoff Faces
+# Chernoff Faces
 
 This is library to produce Chernoff Faces to display data. A face has ten 
 attributes that are used to show variation in values. 
