@@ -6,7 +6,7 @@
 
     <groupId>net.remgant</groupId>
     <artifactId>chernoff-faces</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <scm>
         <connection>scm:git:git@github.com:jdrem/chernoff-faces.git</connection>
