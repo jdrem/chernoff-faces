@@ -179,15 +179,4 @@ public class ChernoffFace {
             graphics.fill(a);
         }
     }
-
-    public static void bezier(Graphics2D graphics, Point2D p1, Point2D p2, Point2D ctl) {
-        QuadCurve2D quadCurve = new QuadCurve2D.Double(p1.getX(), p2.getY(), ctl.getX(), ctl.getY(), p2.getX(), p2.getY());
-        AffineTransform affineTransform = AffineTransform.getTranslateInstance(100.0, 100.0);
-        affineTransform.concatenate(AffineTransform.getScaleInstance(4.0, 4.0));
-        Area area = new Area(quadCurve);
-        area.transform(affineTransform);
-        graphics.setColor(Color.BLACK);
-//        graphics.draw(area);
-        graphics.draw(quadCurve);
-    }
 }
