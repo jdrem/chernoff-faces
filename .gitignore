@@ -1,5 +1,6 @@
-target/**
-.idea/**
-**/*.iml
+target
+build/
+.idea/
+.gradle
 *.png
 !images/*.png
