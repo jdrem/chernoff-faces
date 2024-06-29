@@ -1,4 +1,4 @@
-package net.remgant.graphics;
+package net.remgant.graphics.chernoff;
 
 import java.awt.*;
 import java.awt.geom.*;
